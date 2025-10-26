@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Topic • Study Resources</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #ff9a9e; --bg2:#fad0c4; --bg3:#fbc2eb; --bg4:#a6c1ee;
+      --glass: rgba(255,255,255,0.12);
+      --glass-strong: rgba(255,255,255,0.25);
+      --text:#ffffff; --muted: rgba(255,255,255,0.85);
+      --chip:#ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 20px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:"Poppins",sans-serif}
+    body{
+      min-height:100vh; color:var(--text);
+      background: linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg2),var(--bg3),var(--bg4));
+      background-size: 350% 350%;
+      animation: bgShift 18s ease-in-out infinite;
+      display:flex; flex-direction:column;
+    }
+    @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.0));
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:40px;width:40px;border-radius:12px;object-fit:cover}
+    .brand h1{font-size:18px;font-weight:800;letter-spacing:.5px}
+    .nav a{color:var(--text); text-decoration:none; font-weight:600; opacity:.9}
+
+    .hero{
+      padding:36px 24px 10px; text-align:center;
+    }
+    .topic-chip{display:inline-block; padding:8px 14px; border-radius:999px; background:var(--glass-strong); box-shadow:var(--shadow); font-weight:700; letter-spacing:.3px}
+    .title{font-size:40px; font-weight:800; margin:14px 0 6px; text-shadow:0 6px 24px rgba(0,0,0,.25)}
+    .subtitle{font-size:16px; color:var(--muted)}
+
+    .wrap{width:min(1100px,92%); margin:24px auto 60px; display:grid; grid-template-columns: 1fr; gap:18px}
+
+    .grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:20px}
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr;}}
+
+    .card{background:var(--glass); border:1px solid rgba(255,255,255,.25); border-radius: var(--radius); padding:22px; box-shadow: var(--shadow); position:relative; overflow:hidden}
+    .card::before{content:""; position:absolute; inset:-60%; background: radial-gradient(circle, rgba(255,255,255,.18), transparent 65%); animation: spin 14s linear infinite}
+    @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+    .card h2{position:relative; z-index:1; font-size:22px; margin-bottom:12px}
+    .card p, .card li, .card a{position:relative; z-index:1}
+
+    .chips{display:flex; flex-wrap:wrap; gap:10px; margin:10px 0 4px}
+    .chip{background:var(--chip); color:#5b43a6; border:none; padding:8px 12px; border-radius:999px; font-weight:700; cursor:default}
+
+    .list{display:grid; gap:10px; margin-top:8px}
+    .list li{list-style:none; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); padding:10px 12px; border-radius:12px}
+
+    .links{display:grid; gap:10px}
+    .links a{display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-radius:12px; text-decoration:none; color:var(--text); background:rgba(0,0,0,.25); border:1px solid rgba(255,255,255,.25); transition: transform .18s ease}
+    .links a:hover{transform: translateY(-2px)}
+
+    .btn-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; background:#ffffff; color:#5b43a6; font-weight:800; border:none; text-decoration:none}
+    .btn.ghost{background:transparent; border:2px solid #fff; color:#fff}
+
+    .video-grid{display:grid; grid-template-columns: repeat(2,1fr); gap:12px}
+    @media (max-width: 820px){ .video-grid{grid-template-columns:1fr;}}
+    .video{aspect-ratio:16/9; width:100%; border:0; border-radius:16px; box-shadow: var(--shadow)}
+
+    footer{padding:24px; text-align:center; color:var(--muted)}
+
+    .fade-in{opacity:0; transform: translateY(8px); animation: fade .6s ease forwards}
+    @keyframes fade{to{opacity:1; transform:none}}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="brand">
+        <img src="./images/bu.jpg" alt="logo">
+        <h1>Student's Media</h1>
+      </div>
+      <a href="index.html">← Back to Home</a>
+    </nav>
+  </header>
+
+  <section class="hero fade-in">
+    <span id="chip" class="topic-chip">Topic</span>
+    <h1 id="title" class="title">Loading…</h1>
+    <p id="subtitle" class="subtitle">Curated syllabus, roadmaps, links, and videos.</p>
+
+    <div class="btn-row" style="justify-content:center; margin-top:14px">
+      <a id="quickStart" class="btn" href="#syllabus">Quick Start</a>
+      <a id="openSearch" class="btn ghost" target="_blank">Search on YouTube</a>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="grid">
+      <section class="card fade-in" style="animation-delay:.05s">
+        <h2>Overview</h2>
+        <p id="overview"></p>
+        <div class="chips" id="tags"></div>
+      </section>
+
+      <aside class="card fade-in" style="animation-delay:.1s">
+        <h2>Top Links</h2>
+        <div class="links" id="topLinks"></div>
+      </aside>
+    </div>
+
+    <section class="card fade-in" id="syllabusCard" style="animation-delay:.15s">
+      <h2>Syllabus / What to Learn</h2>
+      <ul id="syllabus" class="list"></ul>
+    </section>
+
+    <section class="card fade-in" style="animation-delay:.2s">
+      <h2>Practice & Projects</h2>
+      <ul id="practice" class="list"></ul>
+    </section>
+
+    <section class="card fade-in" style="animation-delay:.25s">
+      <h2>Video Resources</h2>
+      <div class="video-grid" id="videos"></div>
+      <div class="btn-row">
+        <a id="playlistBtn" class="btn" target="_blank">Open Full Playlist</a>
+        <a id="ytSearchBtn" class="btn ghost" target="_blank">More videos on YouTube</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2025 Student's Media • Built with ❤️ by Raunak Tiwari</footer>
+
+  <script>
+    // ---------- Data: update freely, no build tools needed ----------
+    const CONTENT = {
+      dsa: {
+        name: "Data Structures & Algorithms",
+        overview: "Master core data structures, problem solving patterns, and algorithmic complexity. Aim for clean code, optimal solutions, and pattern recognition.",
+        tags: ["Arrays","Linked Lists","Stacks/Queues","Trees","Graphs","DP","Greedy","Two Pointers","Binary Search"],
+        syllabus: [
+          "Math & Complexity: Big-O, recursion, induction",
+          "Arrays/Strings patterns: sliding window, two pointers",
+          "Hashing & Sets/Maps",
+          "Stacks & Queues (monotonic variants)",
+          "Trees & BSTs; DFS/BFS, recursion vs iteration",
+          "Heaps/Priority Queues",
+          "Graphs: BFS/DFS, shortest paths, topological sort",
+          "Divide & Conquer; Greedy",
+          "Dynamic Programming: 1D, 2D, knapsack, interval",
+          "Practise: 300–500 problems across mixed difficulty"
+        ],
+        practice: [
+          "LeetCode: Top Interview 150 / NeetCode 150",
+          "Codeforces: 800–1400 ladder for speed",
+          "Build notes of patterns with 2–3 examples each"
+        ],
+        topLinks: [
+          { label:"LeetCode", href:"https://leetcode.com/" },
+          { label:"GeeksforGeeks", href:"https://www.geeksforgeeks.org/" },
+          { label:"CP-Algorithms", href:"https://cp-algorithms.com/" }
+        ],
+        videos: [
+          // Add any video IDs you like here; these are examples
+          { id:"8hly31xKli0", title:"DSA Full Course (freeCodeCamp)" },
+          { id:"YJZCUhxNCv8", title:"Dynamic Programming (Errichto)" }
+        ],
+        playlist: "https://www.youtube.com/results?search_query=neetcode+dsa+playlist"
+      },
+      python: {
+        name: "Python",
+        overview: "From syntax to real projects: scripting, data handling, and popular libraries.",
+        tags: ["Syntax","Functions","OOP","File I/O","Virtualenv","Requests","Pandas","Flask/FastAPI"],
+        syllabus: [
+          "Basics: variables, types, I/O, control flow",
+          "Functions, modules, virtual environments",
+          "Data structures: list/dict/set/tuple comprehensions",
+          "OOP: classes, dunder methods",
+          "Error handling & testing",
+          "File I/O, JSON, CSV",
+          "Web: Flask/FastAPI basics",
+          "Project: CLI tool + small API"
+        ],
+        practice: [
+          "HackerRank Python track",
+          "Automate the Boring Stuff mini-projects",
+          "Build a REST API with FastAPI"
+        ],
+        topLinks: [
+          { label:"Python Docs", href:"https://docs.python.org/3/" },
+          { label:"Real Python", href:"https://realpython.com/" },
+          { label:"Automate the Boring Stuff", href:"https://automatetheboringstuff.com/" }
+        ],
+        videos: [
+          { id:"rfscVS0vtbw", title:"Python – 4 hr course (freeCodeCamp)" },
+          { id:"t8pPdKYpowI", title:"FastAPI Tutorial" }
+        ],
+        playlist: "https://www.youtube.com/results?search_query=python+full+course+beginner"
+      },
+      java: {
+        name: "Java",
+        overview: "Strong OOP, collections, streams, and practical tooling for backend and Android.",
+        tags: ["JDK","OOP","Collections","Generics","Streams","Exceptions","Files","JUnit"],
+        syllabus: [
+          "Syntax & OOP pillars",
+          "Collections & Generics",
+          "Streams & Lambdas",
+          "Exceptions & Testing (JUnit)",
+          "Files/Serialization",
+          "Build: Maven/Gradle",
+          "Project: REST service or CLI tool"
+        ],
+        practice: ["LeetCode (Java)", "Build a Spring Boot CRUD API"],
+        topLinks: [
+          { label:"Java Docs", href:"https://docs.oracle.com/javase/" },
+          { label:"Baeldung", href:"https://www.baeldung.com/" },
+          { label:"Spring", href:"https://spring.io/" }
+        ],
+        videos: [
+          { id:"grEKMHGYyns", title:"Java in 2 hours (Bro Code)" },
+          { id:"9SGDpanrc8U", title:"Spring Boot Crash Course" }
+        ],
+        playlist: "https://www.youtube.com/results?search_query=java+full+course+playlist"
+      },
+      cpp: {
+        name: "C++",
+        overview: "High-performance programming with STL, memory management, and modern C++ features.",
+        tags: ["STL","Pointers","RAII","Move Semantics","Templates","C++17/20"],
+        syllabus: [
+          "Syntax, I/O, functions",
+          "Pointers & references",
+          "OOP & RAII",
+          "STL containers & algorithms",
+          "Templates & meta-programming",
+          "Modern C++ (auto, range-for, smart ptrs)"
+        ],
+        practice: ["Codeforces ladder with C++", "Implement LRU Cache with STL"],
+        topLinks: [
+          { label:"cppreference", href:"https://en.cppreference.com/" },
+          { label:"ISO C++", href:"https://isocpp.org/" }
+        ],
+        videos: [ { id:"vLnPwxZdW4Y", title:"C++ Course (freeCodeCamp)" } ],
+        playlist: "https://www.youtube.com/results?search_query=c%2B%2B+course+playlist"
+      },
+      web: {
+        name: "Web Development",
+        overview: "Frontend foundations to modern frameworks and deployment.",
+        tags: ["HTML","CSS","JS","React","Node","APIs","Auth","Deploy"],
+        syllabus: [
+          "HTML & modern CSS (flex, grid)",
+          "JavaScript fundamentals",
+          "React basics & hooks",
+          "Node/Express APIs",
+          "Database & auth",
+          "Project: Full-stack app"
+        ],
+        practice: ["Build 3 clones (landing page, CRUD app, API)"],
+        topLinks: [
+          { label:"MDN Web Docs", href:"https://developer.mozilla.org/" },
+          { label:"freeCodeCamp", href:"https://www.freecodecamp.org/" },
+          { label:"React Docs", href:"https://react.dev/" }
+        ],
+        videos: [ { id:"bMknfKXIFA8", title:"React in 100 mins" } ],
+        playlist: "https://www.youtube.com/results?search_query=web+development+full+course+playlist"
+      },
+      ml: {
+        name: "Machine Learning",
+        overview: "Math foundations, classic algorithms, and practical pipelines.",
+        tags: ["Numpy","Pandas","Scikit","Regression","Trees","SVM","NN"],
+        syllabus: [
+          "Linear algebra & calculus refresher",
+          "Data prep & feature engineering",
+          "Models: regression, trees, ensembles, SVM",
+          "Model selection & metrics",
+          "Intro to neural nets"
+        ],
+        practice: ["Kaggle Titanic → House Prices", "Build a ML pipeline project"],
+        topLinks: [
+          { label:"Scikit-learn", href:"https://scikit-learn.org/" },
+          { label:"Kaggle", href:"https://www.kaggle.com/" }
+        ],
+        videos: [ { id:"GwIo3gDZCVQ", title:"ML Course (freeCodeCamp)" } ],
+        playlist: "https://www.youtube.com/results?search_query=machine+learning+full+course+playlist"
+      },
+      networks: {
+        name: "Computer Networks",
+        overview: "From OSI layers to TCP/IP, routing, and network security basics.",
+        tags: ["OSI","TCP/IP","Routing","DNS","HTTP","TLS"],
+        syllabus: [
+          "OSI vs TCP/IP layers",
+          "IP addressing & subnetting",
+          "TCP/UDP, congestion control",
+          "Application protocols: HTTP/HTTPS, DNS",
+          "Intro to security: TLS, certificates"
+        ],
+        practice: ["Packet sniffing with Wireshark", "Build a tiny HTTP server"],
+        topLinks: [
+          { label:"Beej's Guide to Networking", href:"https://beej.us/guide/bgnet/" },
+          { label:"HTTP Spec (MDN)", href:"https://developer.mozilla.org/en-US/docs/Web/HTTP" }
+        ],
+        videos: [ { id:"qz8uS8SgKjY", title:"Computer Networks Crash Course" } ],
+        playlist: "https://www.youtube.com/results?search_query=computer+networks+course+playlist"
+      },
+      dbms: {
+        name: "DBMS",
+        overview: "Design, normalization, SQL, indexing, transactions, and distributed basics.",
+        tags: ["ER","Normalization","SQL","Indexes","Transactions","ACID"],
+        syllabus: [
+          "ER modeling",
+          "Relational algebra",
+          "Normalization (1NF→BCNF)",
+          "SQL CRUD, joins, subqueries",
+          "Indexes & query plans",
+          "Transactions & concurrency"
+        ],
+        practice: ["Design a schema + queries", "Index tuning exercise"],
+        topLinks: [
+          { label:"PostgreSQL Docs", href:"https://www.postgresql.org/docs/" },
+          { label:"SQLite Tutorial", href:"https://www.sqlitetutorial.net/" }
+        ],
+        videos: [ { id:"HXV3zeQKqGY", title:"SQL Full Course" } ],
+        playlist: "https://www.youtube.com/results?search_query=dbms+sql+course+playlist"
+      },
+      security: {
+        name: "Cyber Security",
+        overview: "Core security principles, OWASP, networking, and practical labs.",
+        tags: ["CIA","OWASP","TLS","Linux","Nmap","Burp"],
+        syllabus: [
+          "Security principles & threat models",
+          "Web vulns: OWASP Top 10",
+          "Network scanning & enumeration",
+          "Crypto basics & TLS",
+          "Hands-on labs (DVWA, OWASP Juice Shop)"
+        ],
+        practice: ["TryHackMe rooms", "OWASP Juice Shop walkthrough"],
+        topLinks: [
+          { label:"OWASP", href:"https://owasp.org/" },
+          { label:"TryHackMe", href:"https://tryhackme.com/" }
+        ],
+        videos: [ { id:"3Kq1MIfTWCE", title:"Cybersecurity Course" } ],
+        playlist: "https://www.youtube.com/results?search_query=cyber+security+course+playlist"
+      },
+      app: {
+        name: "App Development",
+        overview: "Android-first roadmap with Kotlin/Java, UI, state, networking, and storage.",
+        tags: ["Android","Kotlin","Jetpack","Compose","REST","Firebase"],
+        syllabus: [
+          "Android fundamentals & activity lifecycle",
+          "Layouts (XML/Compose)",
+          "Networking: Retrofit/Volley",
+          "Persistence: Room/SQLite",
+          "Auth & deploy to Play Store"
+        ],
+        practice: ["Build 3 apps: Notes, Weather, Auth CRUD"],
+        topLinks: [
+          { label:"Android Docs", href:"https://developer.android.com/" },
+          { label:"Kotlin Docs", href:"https://kotlinlang.org/docs/home.html" }
+        ],
+        videos: [ { id:"EExSSotojVI", title:"Android Development Course" } ],
+        playlist: "https://www.youtube.com/results?search_query=android+development+playlist"
+      }
+    };
+
+    // ---------- Helpers ----------
+    function getParam(name){
+      const u = new URL(window.location.href);
+      return u.searchParams.get(name);
+    }
+    function el(tag, opts={}){ const e=document.createElement(tag); return Object.assign(e, opts); }
+
+    function render(topic){
+      const data = CONTENT[topic];
+      if(!data){
+        document.getElementById('title').textContent = 'Topic not found';
+        document.getElementById('subtitle').textContent = 'Use the Home page to open a valid topic.';
+        return;
+      }
+      document.title = `${data.name} • Study Resources`;
+      document.getElementById('chip').textContent = topic.toUpperCase();
+      document.getElementById('title').textContent = data.name;
+      document.getElementById('overview').textContent = data.overview;
+      document.getElementById('openSearch').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(data.name)}`;
+
+      const tags = document.getElementById('tags');
+      data.tags.forEach(t=> tags.appendChild(el('span',{className:'chip', textContent:t})));
+
+      const syl = document.getElementById('syllabus');
+      data.syllabus.forEach(x=> syl.appendChild(el('li',{textContent:x})));
+
+      const prac = document.getElementById('practice');
+      data.practice.forEach(x=> prac.appendChild(el('li',{textContent:x})));
+
+      const links = document.getElementById('topLinks');
+      data.topLinks.forEach(({label,href})=>{
+        const a = el('a',{href, target:'_blank'});
+        a.innerHTML = `<span>${label}</span><span>↗</span>`;
+        links.appendChild(a);
+      });
+
+      const vids = document.getElementById('videos');
+      data.videos.forEach(v=>{
+        const iframe = el('iframe',{
+          className:'video', allow:'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share', allowFullscreen:true,
+          src:`https://www.youtube.com/embed/${v.id}`,
+          title: v.title
+        });
+        vids.appendChild(iframe);
+      });
+
+      document.getElementById('playlistBtn').href = data.playlist;
+      document.getElementById('ytSearchBtn').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(data.name + ' tutorial')}`;
+    }
+
+    const topic = (getParam('topic')||'').toLowerCase();
+    render(topic);
+  </script>
+</body>
+</html>
